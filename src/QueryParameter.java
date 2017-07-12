@@ -7,12 +7,15 @@ public class QueryParameter {
 	
 		private String filepath;
 		private String orderbycol,groupbycol,selectcol;
+		
 		private RestrictionCondition restrictcondition=new RestrictionCondition(); 
 		
 		
-		private ColumnName columnames=new ColumnName();
 		
 		private boolean hasgroupby,hasorderby,haswhere,hasAllColumn;
+		
+		private ColumnName columnames=new ColumnName();
+		
 		
 		public boolean isHasgroupby() {
 			return hasgroupby;
@@ -56,7 +59,7 @@ public class QueryParameter {
 			this.filepath = filepath;
 		}
 
-		public void setQueryParam(String qrystring)
+		public QueryParameter processQueryParam(String qrystring)
 		{
 			String QueryBit=null,conditionqry=null;
 			
@@ -70,8 +73,7 @@ public class QueryParameter {
 				QueryBit=QueryBit.split("from")[0].trim();
 				selectcol=QueryBit.split("select")[1].trim();
 				this.parseColumn(selectcol);
-				setHasorderby(true);
-				
+				hasorderby=true;
 			}
 			if(qrystring.contains("group by"))
 			{
@@ -123,6 +125,8 @@ public class QueryParameter {
 			System.out.println(restrictcondition.getColumn());
 			System.out.println(restrictcondition.getValue());
 			System.out.println(restrictcondition.getOperator());
+			
+			return this;
 		}
 		
 		private void relationalExpressionProcessing(String relationqry)
@@ -160,8 +164,6 @@ public class QueryParameter {
 				
 			}
 		}
-		
-		
 		
 	}
 

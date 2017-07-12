@@ -4,13 +4,13 @@ import java.util.regex.*;
 
 public class Query 
 {
-	public void parseQuery(String qrystring) throws Exception
+	public void parseQuery(String queryString) throws Exception
 	{
-		if (isValidQueryString(qrystring)) 
+		if (isValidQueryString(queryString)) 
 		{
-			QueryParameter obj=new QueryParameter();
-			obj.setQueryParam(qrystring);
-			HeaderRow headerrow=getHeaderRow(obj);
+			QueryParameter queryParameter=new QueryParameter();
+			queryParameter=queryParameter.processQueryParam(queryString);
+			HeaderRow headerrow=getHeaderRow(queryParameter);
 			
 			//queryProcessing(headerrow,obj);
 			
