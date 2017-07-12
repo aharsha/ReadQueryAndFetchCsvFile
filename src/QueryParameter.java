@@ -131,7 +131,7 @@ public class QueryParameter {
 		
 		private void relationalExpressionProcessing(String relationqry)
 		{
-			String oper[]={">","<",">=","<=","=","!="};
+			String oper[]={"<",">",">=","<=","=","!="};
 			
 			for(String operator:oper)
 			{
